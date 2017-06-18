@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.WebHost", "NetCoreSaaS.WebHost\NetCoreSaaS.WebHost.csproj", "{68085211-D042-4E1B-ABDD-F6D23E7F5E72}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.Data", "NetCoreSaaS.Data\NetCoreSaaS.Data.csproj", "{33A282BF-85AD-42E1-A67C-B31043C5FB46}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{68085211-D042-4E1B-ABDD-F6D23E7F5E72}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68085211-D042-4E1B-ABDD-F6D23E7F5E72}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68085211-D042-4E1B-ABDD-F6D23E7F5E72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{33A282BF-85AD-42E1-A67C-B31043C5FB46}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33A282BF-85AD-42E1-A67C-B31043C5FB46}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33A282BF-85AD-42E1-A67C-B31043C5FB46}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33A282BF-85AD-42E1-A67C-B31043C5FB46}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
