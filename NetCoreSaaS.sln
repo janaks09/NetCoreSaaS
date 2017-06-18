@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.Service", "NetC
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.Model", "NetCoreSaaS.Model\NetCoreSaaS.Model.csproj", "{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.Core", "NetCoreSaaS.Core\NetCoreSaaS.Core.csproj", "{5127E2EC-541D-4C96-A5F9-9EA1B347912C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5127E2EC-541D-4C96-A5F9-9EA1B347912C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5127E2EC-541D-4C96-A5F9-9EA1B347912C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5127E2EC-541D-4C96-A5F9-9EA1B347912C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5127E2EC-541D-4C96-A5F9-9EA1B347912C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
