@@ -1,0 +1,8 @@
+﻿﻿-- System Database
+dotnet ef migrations add InitialSystemDbMigration -c SystemDbContext -o Data/Migrations/MultitenantSample/SystemDb
+
+-- Customer Database
+dotnet ef migrations add InitialCustomerDbMigration -c CatalogDbContext -o Data/Migrations/MultitenantSample/CatalogDb
+
+-- Tenant Database
+dotnet ef migrations add InitialTenantDbMigration -c TenantDbContext -o Data/Migrations/MultitenantSample/TenantDb
