@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCoreSaaS.Data.Contexts;
@@ -16,13 +12,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Extensions
         public static IServiceCollection AddIdentityService(this IServiceCollection services)
         {
 
-            services.AddIdentity<TenantUser, IdentityRole>
-                (
-                    options =>
-                    {
-                        options.Cookies.ApplicationCookie.CookieName = "Cookies";
-                    }
-                )
+            services.AddIdentity<TenantUser, IdentityRole>()
                 .AddEntityFrameworkStores<TenantDbContext>()
                 .AddDefaultTokenProviders();
 

@@ -11,7 +11,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Extensions
         public static IServiceCollection AddSystemDataContext(this IServiceCollection services, IConfigurationRoot configuration, string migrationAssembly)
         {
             services.AddDbContext<SystemDbContext>(builder =>
-                builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                builder.UseSqlServer(configuration.GetConnectionString("SystemConnection"),
                     options => options.MigrationsAssembly(migrationAssembly)));
             return services;
         }
@@ -20,7 +20,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Extensions
         public static IServiceCollection AddCustomerDataContext(this IServiceCollection services, IConfigurationRoot configuration, string migrationAssembly)
         {
             services.AddDbContext<CatalogDbContext>(builder =>
-                builder.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),
+                builder.UseSqlServer(configuration.GetConnectionString("CatalogConnection"),
                     options => options.MigrationsAssembly(migrationAssembly)));
             return services;
         }

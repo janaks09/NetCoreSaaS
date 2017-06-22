@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NetCoreSaaS.WebHost.Data;
-using NetCoreSaaS.WebHost.Models;
+using NetCoreSaaS.Data.Entities.Catalog;
+using NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper;
+using NetCoreSaaS.WebHost.Infrastructures.TenantResolver;
 using NetCoreSaaS.WebHost.Services;
 
 namespace NetCoreSaaS.WebHost
@@ -40,9 +35,9 @@ namespace NetCoreSaaS.WebHost
             //    .AddEntityFrameworkStores<ApplicationDbContext>()
             //    .AddDefaultTokenProviders();
 
+            services.AddMultitenancy<Tenant, TenantResolver>();
             services.AddMvc();
-
-            // Add application services.
+            
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
@@ -66,9 +61,11 @@ namespace NetCoreSaaS.WebHost
 
             app.UseStaticFiles();
 
-            app.UseIdentity();
-            
+            //app.UseIdentity();
 
+            DbInitailizer.InitializeDatabase(app);
+            app.UseMultitenancy<Tenant>();
+            
             app.UseMvc(routes =>
             {
                 routes.MapRoute(
