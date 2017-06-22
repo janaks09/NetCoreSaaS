@@ -13,6 +13,7 @@ namespace NetCoreSaaS.WebHost
         {
             var host = new WebHostBuilder()
                 .UseKestrel()
+                .UseUrls("http://localhost:6001", "http://localhost:6002")
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
