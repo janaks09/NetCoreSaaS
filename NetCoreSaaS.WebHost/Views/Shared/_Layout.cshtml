@@ -1,4 +1,8 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿@using NetCoreSaaS.Data.Entities.Catalog
+@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+
+@inject Tenant CurrenTenant
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,7 +32,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">NetCoreSaaS.WebHost</a>
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="navbar-brand">@CurrenTenant.Name</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -36,7 +40,7 @@
                     <li><a asp-area="" asp-controller="Home" asp-action="About">About</a></li>
                     <li><a asp-area="" asp-controller="Home" asp-action="Contact">Contact</a></li>
                 </ul>
-                @await Html.PartialAsync("_LoginPartial")
+                @*@await Html.PartialAsync("_LoginPartial")*@
             </div>
         </div>
     </nav>
