@@ -22,7 +22,7 @@ namespace NetCoreSaaS.Data.Contexts
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_currentTenant.DbConnectionString, options => options.MigrationsAssembly("AspNetCoreMultitenantSample.Web"));
+            optionsBuilder.UseSqlServer(_currentTenant.DbConnectionString, options => options.MigrationsAssembly("NetCoreSaaS.WebHost"));
 
             base.OnConfiguring(optionsBuilder);
         }

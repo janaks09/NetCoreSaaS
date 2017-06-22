@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NetCoreSaaS.Data.Entities.Catalog;
+using NetCoreSaaS.Data.Infrastrutures.Extensions;
 
 namespace NetCoreSaaS.Data.Contexts
 {
@@ -11,9 +13,14 @@ namespace NetCoreSaaS.Data.Contexts
             
         }
 
+        public DbSet<Tenant> Tenants { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            
             base.OnModelCreating(modelBuilder);
+
+            modelBuilder.TenantConfiguration();
         }
 
 
