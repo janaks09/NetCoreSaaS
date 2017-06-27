@@ -36,6 +36,10 @@ namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
                     b.Property<string>("Name")
                         .IsRequired();
 
+                    b.Property<int>("Subscription");
+
+                    b.Property<DateTime>("SubscriptionExipreDate");
+
                     b.Property<string>("TenantId")
                         .IsRequired();
 

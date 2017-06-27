@@ -35,6 +35,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\NetCoreSaaS.Core\NetCoreSaaS.Core.csproj" />
     <ProjectReference Include="..\NetCoreSaaS.Data\NetCoreSaaS.Data.csproj" />
   </ItemGroup>
 

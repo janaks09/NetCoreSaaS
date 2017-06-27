@@ -21,6 +21,8 @@ namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
                     IsEnabled = table.Column<bool>(nullable: false),
                     LastUpdated = table.Column<DateTime>(nullable: false),
                     Name = table.Column<string>(nullable: false),
+                    Subscription = table.Column<int>(nullable: false),
+                    SubscriptionExipreDate = table.Column<DateTime>(nullable: false),
                     TenantId = table.Column<string>(nullable: false)
                 },
                 constraints: table =>

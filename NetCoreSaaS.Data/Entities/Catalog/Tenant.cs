@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using NetCoreSaaS.Data.Abstracts;
 
 namespace NetCoreSaaS.Data.Entities.Catalog
@@ -16,6 +17,13 @@ namespace NetCoreSaaS.Data.Entities.Catalog
 
         [Required]
         public bool IsEnabled { get; set; }
+
+        [Required]
+        public int Subscription { get; set; }
+
+        [Required]
+        [DataType(DataType.DateTime)]
+        public DateTime SubscriptionExipreDate { get; set; }
 
         [Required]
         public string DbConnectionString { get; set; }

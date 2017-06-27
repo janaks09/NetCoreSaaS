@@ -8,7 +8,7 @@ using NetCoreSaaS.Data.Contexts;
 namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20170622075211_InitialCustomerDbMigration")]
+    [Migration("20170627075947_InitialCustomerDbMigration")]
     partial class InitialCustomerDbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -36,6 +36,10 @@ namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
 
                     b.Property<string>("Name")
                         .IsRequired();
+
+                    b.Property<int>("Subscription");
+
+                    b.Property<DateTime>("SubscriptionExipreDate");
 
                     b.Property<string>("TenantId")
                         .IsRequired();
