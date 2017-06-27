@@ -23,6 +23,9 @@ namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
 
                     b.Property<DateTime>("CreatedDate");
 
+                    b.Property<string>("Database")
+                        .IsRequired();
+
                     b.Property<string>("DbConnectionString")
                         .IsRequired();
 
@@ -34,6 +37,9 @@ namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
                     b.Property<DateTime>("LastUpdated");
 
                     b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("Server")
                         .IsRequired();
 
                     b.Property<int>("Subscription");

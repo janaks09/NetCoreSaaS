@@ -8,7 +8,7 @@ using NetCoreSaaS.Data.Contexts;
 namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
 {
     [DbContext(typeof(CatalogDbContext))]
-    [Migration("20170627075947_InitialCustomerDbMigration")]
+    [Migration("20170627081437_InitialCustomerDbMigration")]
     partial class InitialCustomerDbMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,9 @@ namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
 
                     b.Property<DateTime>("CreatedDate");
 
+                    b.Property<string>("Database")
+                        .IsRequired();
+
                     b.Property<string>("DbConnectionString")
                         .IsRequired();
 
@@ -35,6 +38,9 @@ namespace NetCoreSaaS.WebHost.Data.Migrations.NetCoreSaaS.CatalogDb
                     b.Property<DateTime>("LastUpdated");
 
                     b.Property<string>("Name")
+                        .IsRequired();
+
+                    b.Property<string>("Server")
                         .IsRequired();
 
                     b.Property<int>("Subscription");

@@ -16,6 +16,12 @@ namespace NetCoreSaaS.Data.Entities.Catalog
         public string HostName { get; set; }
 
         [Required]
+        public string Server { get; set; }
+
+        [Required]
+        public string Database { get; set; }
+
+        [Required]
         public bool IsEnabled { get; set; }
 
         [Required]
