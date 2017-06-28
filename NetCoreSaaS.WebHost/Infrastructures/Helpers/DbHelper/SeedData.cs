@@ -17,7 +17,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper
                 {
                     TenantId = "786931ff-d775-4606-b5ec-aef26e3f7420",
                     Name = "J-Shop",
-                    HostName = "localhost:6001",
+                    HostName = "tenant1.localhost:6001",
                     Subscription = (int)TenantSubscription.Trial,
                     Server = TenantConstant.LocalServer,
                     Database = "NCS_786931ff-d775-4606-b5ec-aef26e3f7420",
@@ -32,7 +32,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper
                 {
                     TenantId = "14e0af40-3284-4914-bbb2-66330a24482e",
                     Name = "R-Shop",
-                    HostName = "localhost:6002",
+                    HostName = "tenant1.localhost:6001",
                     IsEnabled = true,
                     Server = TenantConstant.LocalServer,
                     Database = "NCS_14e0af40-3284-4914-bbb2-66330a24482e",

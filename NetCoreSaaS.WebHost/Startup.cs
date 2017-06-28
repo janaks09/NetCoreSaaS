@@ -1,13 +1,17 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using NetCoreSaaS.Data.Contexts;
 using NetCoreSaaS.Data.Entities.Catalog;
+using NetCoreSaaS.Data.Entities.Tenant;
 using NetCoreSaaS.WebHost.Infrastructures.Extensions;
 using NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper;
 using NetCoreSaaS.WebHost.Infrastructures.TenantResolver;
+using NetCoreSaaS.WebHost.Models;
 using NetCoreSaaS.WebHost.Services;
 
 namespace NetCoreSaaS.WebHost
@@ -29,16 +33,11 @@ namespace NetCoreSaaS.WebHost
         
         public void ConfigureServices(IServiceCollection services)
         {
-            // Add framework services.
-            //services.AddDbContext<ApplicationDbContext>(options =>
-            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
             
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddContexts(Configuration, migrationAssembly);
+
+            services.AddIdentityService();
 
             services.AddMultitenancy<Tenant, TenantResolver>();
             services.AddMvc();
@@ -66,11 +65,10 @@ namespace NetCoreSaaS.WebHost
 
             app.UseStaticFiles();
 
-            //app.UseIdentity();
-
-            DbInitailizer.InitializeDatabase(app);
             app.UseMultitenancy<Tenant>();
-            
+            app.UseIdentity();
+            DbInitailizer.InitializeDatabase(app);
+
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using NetCoreSaaS.Core.ENums;
+using NetCoreSaaS.Data.Entities.Catalog;
+using NetCoreSaaS.Data.Entities.Tenant;
 using NetCoreSaaS.WebHost.Models;
 using NetCoreSaaS.WebHost.Models.AccountViewModels;
 using NetCoreSaaS.WebHost.Services;
@@ -18,18 +21,20 @@ namespace NetCoreSaaS.WebHost.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private readonly UserManager<ApplicationUser> _userManager;
-        private readonly SignInManager<ApplicationUser> _signInManager;
+        private readonly UserManager<TenantUser> _userManager;
+        private readonly SignInManager<TenantUser> _signInManager;
         private readonly IEmailSender _emailSender;
+        private readonly Tenant _currentTenant;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
         private readonly string _externalCookieScheme;
 
         public AccountController(
-            UserManager<ApplicationUser> userManager,
-            SignInManager<ApplicationUser> signInManager,
+            UserManager<TenantUser> userManager,
+            SignInManager<TenantUser> signInManager,
             IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
+            Tenant currentTenant,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory)
         {
@@ -37,6 +42,7 @@ namespace NetCoreSaaS.WebHost.Controllers
             _signInManager = signInManager;
             _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
+            _currentTenant = currentTenant;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
@@ -112,7 +118,17 @@ namespace NetCoreSaaS.WebHost.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new TenantUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    TenantId = _currentTenant.TenantId,
+                    Status = (int)TenantSubscription.Pro,
+                    CreatedDate = DateTime.UtcNow,
+                    LastUpdated = DateTime.UtcNow
+                };
+
+
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -214,7 +230,7 @@ namespace NetCoreSaaS.WebHost.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new TenantUser { UserName = model.Email, Email = model.Email };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

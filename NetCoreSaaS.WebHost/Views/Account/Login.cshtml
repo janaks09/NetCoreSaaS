@@ -1,8 +1,5 @@
-﻿@using System.Collections.Generic
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Http.Authentication
-@model LoginViewModel
-@inject SignInManager<ApplicationUser> SignInManager
+﻿@model LoginViewModel
+@inject SignInManager<TenantUser> SignInManager
 
 @{
     ViewData["Title"] = "Log in";

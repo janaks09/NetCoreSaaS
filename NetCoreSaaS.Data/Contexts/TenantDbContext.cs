@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using NetCoreSaaS.Data.Entities.Catalog;
 using NetCoreSaaS.Data.Entities.Tenant;
+using NetCoreSaaS.Data.Infrastrutures.Extensions;
 
 namespace NetCoreSaaS.Data.Contexts
 {
@@ -13,16 +14,17 @@ namespace NetCoreSaaS.Data.Contexts
         {
             _currentTenant = currentTenant;
 
-            //TODO: Made Database.Migrate() Compatible.
-            //tenant Database is always growing so new migration will happen time to time so Database.Migrate is necessary
-            var dbstatus = Database.EnsureCreated();
+            Database.EnsureCreated();
 
         }
 
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(_currentTenant.DbConnectionString, options => options.MigrationsAssembly("NetCoreSaaS.WebHost"));
+            if (_currentTenant != null)
+            {
+                optionsBuilder.UseSqlServer(_currentTenant.GetConnectionString(), options => options.MigrationsAssembly("NetCoreSaaS.WebHost"));
+            }
 
             base.OnConfiguring(optionsBuilder);
         }
