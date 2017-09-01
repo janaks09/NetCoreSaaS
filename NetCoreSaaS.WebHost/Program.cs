@@ -1,5 +1,4 @@
-﻿using System.IO;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 
 namespace NetCoreSaaS.WebHost
 {
@@ -7,15 +6,16 @@ namespace NetCoreSaaS.WebHost
     {
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
-                .UseKestrel()
-                .UseUrls("http://*.localhost:6001")
-                .UseContentRoot(Directory.GetCurrentDirectory())
-                .UseIISIntegration()
-                .UseStartup<Startup>()
-                .Build();
+            BuildWebHost(args).Run();
+        }
 
-            host.Run();
+        public static IWebHost BuildWebHost(string[] args)
+        {
+            return Microsoft.AspNetCore.WebHost.CreateDefaultBuilder(args)
+                            .UseUrls("http://*.localhost:6001")
+                            .UseStartup<Startup>()
+                            .Build();
         }
     }
+
 }
