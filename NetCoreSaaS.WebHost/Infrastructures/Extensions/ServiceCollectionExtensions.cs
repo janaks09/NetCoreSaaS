@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NetCoreSaaS.Data.Contexts;
@@ -21,7 +21,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Extensions
         }
 
 
-        public static IServiceCollection AddContexts(this IServiceCollection services, IConfigurationRoot configuration, string migrationsAssembly)
+        public static IServiceCollection AddContexts(this IServiceCollection services, IConfiguration configuration, string migrationsAssembly)
         {
 
             services.AddSystemDataContext(configuration, migrationsAssembly)

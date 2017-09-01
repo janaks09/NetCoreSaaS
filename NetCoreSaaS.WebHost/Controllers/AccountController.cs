@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -8,13 +7,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using NetCoreSaaS.Core.ENums;
 using NetCoreSaaS.Data.Entities.Catalog;
 using NetCoreSaaS.Data.Entities.Tenant;
-using NetCoreSaaS.WebHost.Models;
 using NetCoreSaaS.WebHost.Models.AccountViewModels;
 using NetCoreSaaS.WebHost.Services;
+using Microsoft.AspNetCore.Authentication;
 
 namespace NetCoreSaaS.WebHost.Controllers
 {
@@ -27,12 +25,10 @@ namespace NetCoreSaaS.WebHost.Controllers
         private readonly Tenant _currentTenant;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
-        private readonly string _externalCookieScheme;
 
         public AccountController(
             UserManager<TenantUser> userManager,
             SignInManager<TenantUser> signInManager,
-            IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             Tenant currentTenant,
             ISmsSender smsSender,
@@ -40,7 +36,6 @@ namespace NetCoreSaaS.WebHost.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _currentTenant = currentTenant;
             _smsSender = smsSender;
@@ -54,7 +49,7 @@ namespace NetCoreSaaS.WebHost.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ViewData["ReturnUrl"] = returnUrl;
             return View();

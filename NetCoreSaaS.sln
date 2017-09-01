@@ -1,17 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.6
+VisualStudioVersion = 15.0.26730.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.WebHost", "NetCoreSaaS.WebHost\NetCoreSaaS.WebHost.csproj", "{68085211-D042-4E1B-ABDD-F6D23E7F5E72}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.WebHost", "NetCoreSaaS.WebHost\NetCoreSaaS.WebHost.csproj", "{68085211-D042-4E1B-ABDD-F6D23E7F5E72}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.Data", "NetCoreSaaS.Data\NetCoreSaaS.Data.csproj", "{33A282BF-85AD-42E1-A67C-B31043C5FB46}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.Data", "NetCoreSaaS.Data\NetCoreSaaS.Data.csproj", "{33A282BF-85AD-42E1-A67C-B31043C5FB46}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.Service", "NetCoreSaaS.Service\NetCoreSaaS.Service.csproj", "{3B4C4769-99F6-4B2C-9A5E-CBE9986299A6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.Service", "NetCoreSaaS.Service\NetCoreSaaS.Service.csproj", "{3B4C4769-99F6-4B2C-9A5E-CBE9986299A6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.Model", "NetCoreSaaS.Model\NetCoreSaaS.Model.csproj", "{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.Model", "NetCoreSaaS.Model\NetCoreSaaS.Model.csproj", "{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NetCoreSaaS.Core", "NetCoreSaaS.Core\NetCoreSaaS.Core.csproj", "{5127E2EC-541D-4C96-A5F9-9EA1B347912C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.Core", "NetCoreSaaS.Core\NetCoreSaaS.Core.csproj", "{5127E2EC-541D-4C96-A5F9-9EA1B347912C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -42,5 +42,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3C0D690-E3A5-4E0C-9102-A62A46924671}
 	EndGlobalSection
 EndGlobal

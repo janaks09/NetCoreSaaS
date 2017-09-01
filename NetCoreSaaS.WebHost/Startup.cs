@@ -1,35 +1,25 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using NetCoreSaaS.Data.Contexts;
 using NetCoreSaaS.Data.Entities.Catalog;
-using NetCoreSaaS.Data.Entities.Tenant;
 using NetCoreSaaS.WebHost.Infrastructures.Extensions;
 using NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper;
 using NetCoreSaaS.WebHost.Infrastructures.TenantResolver;
-using NetCoreSaaS.WebHost.Models;
 using NetCoreSaaS.WebHost.Services;
 
 namespace NetCoreSaaS.WebHost
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
-
-            builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
         
         public void ConfigureServices(IServiceCollection services)
         {
@@ -66,7 +56,7 @@ namespace NetCoreSaaS.WebHost
             app.UseStaticFiles();
 
             app.UseMultitenancy<Tenant>();
-            app.UseIdentity();
+            app.UseAuthentication();
             DbInitailizer.InitializeDatabase(app);
 
             app.UseMvc(routes =>
