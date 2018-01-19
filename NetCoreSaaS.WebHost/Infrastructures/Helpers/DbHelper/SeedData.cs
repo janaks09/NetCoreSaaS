@@ -32,7 +32,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper
                 {
                     TenantId = "14e0af40-3284-4914-bbb2-66330a24482e",
                     Name = "R-Shop",
-                    HostName = "tenant1.localhost:6001",
+                    HostName = "tenant2.localhost:6001",
                     IsEnabled = true,
                     Server = TenantConstant.LocalServer,
                     Database = "NCS_14e0af40-3284-4914-bbb2-66330a24482e",
