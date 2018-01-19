@@ -1,6 +1,9 @@
 # NetCoreSaaS
 Asp.Net Core multi-tenant application Sample using #SaaSKit
 
+## .Net Core 2.0 Support!!!
+This application is upgraded to .Net Core 2.0. You can find latest releases for both .Net Core 1.x and .Net Core 2.0 in release tab.
+
 ## Application Architecture
 Nothing Complex.
 
@@ -14,7 +17,8 @@ In `NetCoreSaaS.Data` project we have three different context.
 ## Steps to run application
 + Create migration file if not created (but its already created under `Data` folder of `NetCoreSaaS.WebHost`). If you want to re-create migration later check `TempFiles` folder in `NetCoreSaaS.WebHost` for migration scripts. Run `System Database` and `Catalog Database` migration only.
 + Run application. Application will itself migrate changes to database with seeding in `NetCoreSaaS_Catalogdb` with tenant data.
-+ For testing purpose, I have explicitly configure application to run in two port (6001, 6002 you can find configuration in `Program.cs` file.) Also default seeding support request from those two port only else tenant will not resolve.
-+ Once you run application you can go to `http://localhost:6001` and `http://localhost:6002` you can find same site for two virtual shop(tenants).
++ For testing purpose, I have configure application to listen request in host `http://*.localhost:6001` (you can find configuration in `Program.cs` file.) Default seeding has only added two tenant which hostname are `http://tenant1.localhost:6001` and `http://tenant2.localhost:6001`  therefore request from only these two hostname will be resolved else tenant will not resolve. You can find seeding in `NetCoreSaaS.WebHost > Infrastructures > Helpers > DbHelper` folder.
++ Once application is running, go to `http://tenant1.localhost:6001` and `http://tenant2.localhost:6001` you can find same site for two virtual shop(tenants).
++ You can also perform user signup and login operation with these tenants.
 
-More documentation comming soon...
+More feature and documentation are comming...
