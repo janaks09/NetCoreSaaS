@@ -1,6 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -27,10 +29,17 @@ namespace NetCoreSaaS.WebHost
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddContexts(Configuration, migrationAssembly);
 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             services.AddIdentityService();
 
             services.AddMultitenancy<Tenant, TenantResolver>();
-            services.AddMvc();
+            services.AddMvc()
+                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1); ;
 
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
@@ -39,21 +48,20 @@ namespace NetCoreSaaS.WebHost
         
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
             }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
+                app.UseHsts();
             }
 
+            app.UseHttpsRedirection();
             app.UseStaticFiles();
+            app.UseCookiePolicy();
 
             app.UseMultitenancy<Tenant>();
             app.UseAuthentication();
