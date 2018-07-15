@@ -12,7 +12,7 @@ namespace NetCoreSaaS.WebHost
         public static IWebHostBuilder CreateWebHostBuilder(string[] args)
         {
             return Microsoft.AspNetCore.WebHost.CreateDefaultBuilder(args)
-                            .UseUrls("https://*.localhost:6001")
+                            .UseUrls("http://*.localhost:6001")
                             .UseStartup<Startup>();
         }
     }
