@@ -1,8 +1,11 @@
 # NetCoreSaaS
 Asp.Net Core multi-tenant application Sample using #SaaSKit
 
-## .Net Core 2.0 Support!!!
-This application is upgraded to .Net Core 2.0. You can find latest releases for both .Net Core 1.x and .Net Core 2.0 in release tab.
+## .Net Core 2.1 Support!!!
+This application is upgraded to support .Net Core 2.1.
+
+## Known Issue
+Currently `HTTPS` redirection is not supported.
 
 ## Application Architecture
 Nothing Complex.
