@@ -22,10 +22,10 @@ namespace NetCoreSaaS.WebHost
         }
 
         public IConfiguration Configuration { get; }
-        
+
         public void ConfigureServices(IServiceCollection services)
         {
-            
+
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddContexts(Configuration, migrationAssembly);
 
@@ -37,7 +37,9 @@ namespace NetCoreSaaS.WebHost
 
             services.AddIdentityService();
 
-            services.AddMultitenancy<Tenant, TenantResolver>();
+            //Two options available, resolved tenant from db in each request or from cache
+            //services.AddMultitenancy<Tenant, TenantResolver>();
+            services.AddMultitenancy<Tenant, MemoryCacheTenantResolver>();
             services.AddMvc()
                     .SetCompatibilityVersion(CompatibilityVersion.Version_2_1); ;
 
@@ -45,7 +47,7 @@ namespace NetCoreSaaS.WebHost
             services.AddTransient<ISmsSender, AuthMessageSender>();
         }
 
-        
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
         {
             if (env.IsDevelopment())
