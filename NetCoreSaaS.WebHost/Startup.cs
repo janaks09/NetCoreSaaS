@@ -58,10 +58,10 @@ namespace NetCoreSaaS.WebHost
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                //app.UseHsts();
+                app.UseHttpsRedirection();
+                app.UseHsts();
             }
 
-            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

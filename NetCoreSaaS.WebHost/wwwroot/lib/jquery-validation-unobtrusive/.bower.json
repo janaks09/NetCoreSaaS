@@ -1,14 +1,15 @@
 {
   "name": "jquery-validation-unobtrusive",
   "homepage": "https://github.com/aspnet/jquery-validation-unobtrusive",
-  "version": "3.2.11",
-  "_release": "3.2.11",
+  "version": "3.2.9",
+  "_release": "3.2.9",
   "_resolution": {
     "type": "version",
-    "tag": "v3.2.11",
-    "commit": "74e6ccc7933ac224bdbef84b8dfff6d7ec19f286"
+    "tag": "v3.2.9",
+    "commit": "a91f5401898e125f10771c5f5f0909d8c4c82396"
   },
   "_source": "https://github.com/aspnet/jquery-validation-unobtrusive.git",
-  "_target": "3.2.11",
-  "_originalSource": "jquery-validation-unobtrusive"
+  "_target": "^3.2.9",
+  "_originalSource": "jquery-validation-unobtrusive",
+  "_direct": true
 }
