@@ -12,25 +12,17 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper
         {
             using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
             {
-                var systemDbContext = serviceScope.ServiceProvider.GetRequiredService<SystemDbContext>();
-                systemDbContext.Database.Migrate();
-
-
                 var catalogDbContext = serviceScope.ServiceProvider.GetRequiredService<CatalogDbContext>();
                 catalogDbContext.Database.Migrate();
 
                 //Seeding code goes here
-
                 if (!catalogDbContext.Tenants.Any())
                 {
                     foreach (var tenant in SeedData.GetTestTenants())
-                    {
                         catalogDbContext.Tenants.Add(tenant);
-                    }
 
                     catalogDbContext.SaveChanges();
                 }
-
             }
         }
     }

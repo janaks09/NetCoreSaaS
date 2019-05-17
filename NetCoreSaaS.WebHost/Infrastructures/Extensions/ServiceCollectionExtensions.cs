@@ -20,12 +20,10 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Extensions
             return services;
         }
 
-
         public static IServiceCollection AddContexts(this IServiceCollection services, IConfiguration configuration, string migrationsAssembly)
         {
 
-            services.AddSystemDataContext(configuration, migrationsAssembly)
-                .AddCustomerDataContext(configuration, migrationsAssembly)
+            services.AddCustomerDataContext(configuration, migrationsAssembly)
                 .AddTenantDbContext(configuration, migrationsAssembly);
 
             return services;
