@@ -7,8 +7,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using NetCoreSaaS.Data.Entities.Catalog;
+using NetCoreSaaS.Data.Infrastrutures.Extensions;
+using NetCoreSaaS.Data.Migrations;
 using NetCoreSaaS.WebHost.Infrastructures.Extensions;
 using NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper;
+using NetCoreSaaS.WebHost.Infrastructures.Middlewares;
 using NetCoreSaaS.WebHost.Infrastructures.TenantResolver;
 using NetCoreSaaS.WebHost.Services;
 
@@ -67,7 +70,7 @@ namespace NetCoreSaaS.WebHost
 
             app.UseMultitenancy<Tenant>();
             app.UseAuthentication();
-            DbInitailizer.InitializeDatabase(app);
+            app.UseTenantDbMigrator();
 
             app.UseMvc(routes =>
             {

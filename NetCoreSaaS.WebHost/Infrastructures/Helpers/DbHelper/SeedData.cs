@@ -20,7 +20,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper
                     HostName = "tenant1.localhost:6001",
                     Subscription = (int)TenantSubscription.Trial,
                     Server = TenantConstant.LocalServer,
-                    Database = "NCS_786931ff-d775-4606-b5ec-aef26e3f7420",
+                    Database = "NCS_Tenant1",
                     SubscriptionExipreDate = DateTime.UtcNow.AddMonths(3), //3 month trial period
                     IsEnabled = true,
                     DbConnectionString = TenantConstant.LocalDbConnectionString,
@@ -35,7 +35,7 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper
                     HostName = "tenant2.localhost:6001",
                     IsEnabled = true,
                     Server = TenantConstant.LocalServer,
-                    Database = "NCS_14e0af40-3284-4914-bbb2-66330a24482e",
+                    Database = "NCS_Tenant2",
                     Subscription = (int)TenantSubscription.Pro,
                     SubscriptionExipreDate = DateTime.UtcNow.AddYears(1), //1 year timeline for pro
                     DbConnectionString = TenantConstant.LocalDbConnectionString,

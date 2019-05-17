@@ -13,9 +13,6 @@ namespace NetCoreSaaS.Data.Contexts
         public TenantDbContext(Tenant currentTenant)
         {
             _currentTenant = currentTenant;
-
-            Database.EnsureCreated();
-
         }
 
 
