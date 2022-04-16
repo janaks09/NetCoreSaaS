@@ -1,16 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using NetCoreSaaS.Data.Entities.Tenant;
-using NetCoreSaaS.WebHost.Models;
 using NetCoreSaaS.WebHost.Models.ManageViewModels;
-using NetCoreSaaS.WebHost.Services;
 using Microsoft.AspNetCore.Authentication;
 
 namespace NetCoreSaaS.WebHost.Controllers
@@ -20,21 +15,15 @@ namespace NetCoreSaaS.WebHost.Controllers
     {
         private readonly UserManager<TenantUser> _userManager;
         private readonly SignInManager<TenantUser> _signInManager;
-        private readonly IEmailSender _emailSender;
-        private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
 
         public ManageController(
           UserManager<TenantUser> userManager,
           SignInManager<TenantUser> signInManager,
-          IEmailSender emailSender,
-          ISmsSender smsSender,
           ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
-            _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<ManageController>();
         }
 
@@ -112,7 +101,7 @@ namespace NetCoreSaaS.WebHost.Controllers
                 return View("Error");
             }
             var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
-            await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
+            //todo: add logic to send code to phone number
             return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
         }
 

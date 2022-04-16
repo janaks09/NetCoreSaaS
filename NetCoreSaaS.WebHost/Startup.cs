@@ -1,8 +1,8 @@
 ﻿using System.Reflection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -10,22 +10,20 @@ using NetCoreSaaS.Data.Entities.Catalog;
 using NetCoreSaaS.WebHost.Infrastructures.Extensions;
 using NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper;
 using NetCoreSaaS.WebHost.Infrastructures.TenantResolver;
-using NetCoreSaaS.WebHost.Services;
+using NetCoreSaaS.WebHost.Infrastructures.Helpers;
 
 namespace NetCoreSaaS.WebHost
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
         }
 
         public IConfiguration Configuration { get; }
-
         public void ConfigureServices(IServiceCollection services)
         {
-
             var migrationAssembly = typeof(Startup).GetTypeInfo().Assembly.GetName().Name;
             services.AddContexts(Configuration, migrationAssembly);
 
@@ -40,40 +38,36 @@ namespace NetCoreSaaS.WebHost
             //Two options available, resolved tenant from db in each request or from cache
             //services.AddMultitenancy<Tenant, TenantResolver>();
             services.AddMultitenancy<Tenant, MemoryCacheTenantResolver>();
-            services.AddMvc()
-                    .SetCompatibilityVersion(CompatibilityVersion.Version_2_1); ;
-
-            services.AddTransient<IEmailSender, AuthMessageSender>();
-            services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddControllersWithViews();
         }
 
 
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
             if (env.IsDevelopment())
-            {
                 app.UseDeveloperExceptionPage();
-                app.UseDatabaseErrorPage();
-            }
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                //app.UseHsts();
+                app.UseHsts();
+                app.UseHttpsRedirection();
             }
 
-            //app.UseHttpsRedirection();
             app.UseStaticFiles();
-            app.UseCookiePolicy();
 
+            app.UseCookiePolicy();
             app.UseMultitenancy<Tenant>();
             app.UseAuthentication();
+            app.UseAuthorization();
+
             DbInitailizer.InitializeDatabase(app);
 
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

@@ -21,14 +21,10 @@ namespace NetCoreSaaS.Data.Entities.Catalog
         [Required]
         public string Database { get; set; }
 
-        [Required]
         public bool IsEnabled { get; set; }
 
-        [Required]
         public int Subscription { get; set; }
 
-        [Required]
-        [DataType(DataType.DateTime)]
         public DateTime SubscriptionExipreDate { get; set; }
 
         [Required]

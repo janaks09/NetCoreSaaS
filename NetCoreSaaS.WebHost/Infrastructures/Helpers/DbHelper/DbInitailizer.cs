@@ -10,27 +10,18 @@ namespace NetCoreSaaS.WebHost.Infrastructures.Helpers.DbHelper
     {
         public static void InitializeDatabase(IApplicationBuilder app)
         {
-            using (var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope())
+            using var serviceScope = app.ApplicationServices.GetService<IServiceScopeFactory>().CreateScope();
+            var catalogDbContext = serviceScope.ServiceProvider.GetRequiredService<CatalogDbContext>();
+            catalogDbContext.Database.Migrate();
+
+            //Seeding code goes here
+
+            if (!catalogDbContext.Tenants.Any())
             {
-                var systemDbContext = serviceScope.ServiceProvider.GetRequiredService<SystemDbContext>();
-                systemDbContext.Database.Migrate();
+                foreach (var tenant in SeedData.GetTestTenants())
+                    catalogDbContext.Tenants.Add(tenant);
 
-
-                var catalogDbContext = serviceScope.ServiceProvider.GetRequiredService<CatalogDbContext>();
-                catalogDbContext.Database.Migrate();
-
-                //Seeding code goes here
-
-                if (!catalogDbContext.Tenants.Any())
-                {
-                    foreach (var tenant in SeedData.GetTestTenants())
-                    {
-                        catalogDbContext.Tenants.Add(tenant);
-                    }
-
-                    catalogDbContext.SaveChanges();
-                }
-
+                catalogDbContext.SaveChanges();
             }
         }
     }
