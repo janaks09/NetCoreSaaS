@@ -1,15 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26730.3
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32228.430
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.WebHost", "NetCoreSaaS.WebHost\NetCoreSaaS.WebHost.csproj", "{68085211-D042-4E1B-ABDD-F6D23E7F5E72}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.Data", "NetCoreSaaS.Data\NetCoreSaaS.Data.csproj", "{33A282BF-85AD-42E1-A67C-B31043C5FB46}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.Service", "NetCoreSaaS.Service\NetCoreSaaS.Service.csproj", "{3B4C4769-99F6-4B2C-9A5E-CBE9986299A6}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.Model", "NetCoreSaaS.Model\NetCoreSaaS.Model.csproj", "{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "NetCoreSaaS.Core", "NetCoreSaaS.Core\NetCoreSaaS.Core.csproj", "{5127E2EC-541D-4C96-A5F9-9EA1B347912C}"
 EndProject
@@ -31,10 +29,6 @@ Global
 		{3B4C4769-99F6-4B2C-9A5E-CBE9986299A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B4C4769-99F6-4B2C-9A5E-CBE9986299A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B4C4769-99F6-4B2C-9A5E-CBE9986299A6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7838CA7E-2AAD-47BA-B56A-B54D40D738A3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5127E2EC-541D-4C96-A5F9-9EA1B347912C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5127E2EC-541D-4C96-A5F9-9EA1B347912C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5127E2EC-541D-4C96-A5F9-9EA1B347912C}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -1,7 +1,4 @@
-﻿﻿-- System Database
-dotnet ef migrations add InitialSystemDbMigration -c SystemDbContext -o Data/Migrations/NetCoreSaaS/SystemDb
-
--- Catalog Database
+﻿-- Catalog Database
 dotnet ef migrations add InitialCustomerDbMigration -c CatalogDbContext -o Data/Migrations/NetCoreSaaS/CatalogDb
 
 -- Tenant Database

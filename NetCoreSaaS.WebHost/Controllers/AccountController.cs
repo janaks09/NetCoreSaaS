@@ -11,7 +11,6 @@ using NetCoreSaaS.Core.ENums;
 using NetCoreSaaS.Data.Entities.Catalog;
 using NetCoreSaaS.Data.Entities.Tenant;
 using NetCoreSaaS.WebHost.Models.AccountViewModels;
-using NetCoreSaaS.WebHost.Services;
 using Microsoft.AspNetCore.Authentication;
 
 namespace NetCoreSaaS.WebHost.Controllers
@@ -21,24 +20,18 @@ namespace NetCoreSaaS.WebHost.Controllers
     {
         private readonly UserManager<TenantUser> _userManager;
         private readonly SignInManager<TenantUser> _signInManager;
-        private readonly IEmailSender _emailSender;
         private readonly Tenant _currentTenant;
-        private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
 
         public AccountController(
             UserManager<TenantUser> userManager,
             SignInManager<TenantUser> signInManager,
-            IEmailSender emailSender,
             Tenant currentTenant,
-            ISmsSender smsSender,
             ILoggerFactory loggerFactory)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _emailSender = emailSender;
             _currentTenant = currentTenant;
-            _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
         }
 
@@ -394,15 +387,7 @@ namespace NetCoreSaaS.WebHost.Controllers
                 return View("Error");
             }
 
-            var message = "Your security code is: " + code;
-            if (model.SelectedProvider == "Email")
-            {
-                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", message);
-            }
-            else if (model.SelectedProvider == "Phone")
-            {
-                await _smsSender.SendSmsAsync(await _userManager.GetPhoneNumberAsync(user), message);
-            }
+            //todo: write logic to send code via email or SMS
 
             return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
